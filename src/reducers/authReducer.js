@@ -1,7 +1,10 @@
-function authReducer(state = {foo: 'bar'}, action = {payload: {id: 1}}) {
+function authReducer(state = {}, action) {
   switch(action.type) {
     case 'SIGNIN':
-      return { ...state, [action.payload.id]: action.payload };
+      if (!action.payload.data) {
+        return { ...state, isSignedIn: false };
+      }
+      return { ...state, [action.payload.data.id]: action.payload.data, isSignedIn: true };
     default:
       return state;
   }

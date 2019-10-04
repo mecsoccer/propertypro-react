@@ -436,7 +436,7 @@ tr:nth-child(even){
     flex-wrap: wrap;
 }
 .off{
-    display: none;
+    display: none !important;
 }
 
 /* over-flow */
