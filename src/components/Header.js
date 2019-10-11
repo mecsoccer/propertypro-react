@@ -12,12 +12,19 @@ class Header extends React.Component {
     menuBar.classList.toggle('on');
   }
 
+  renderAuthButton() {
+    if (sessionStorage.getItem('token')) {
+      return 'Signout'
+    }
+    return 'Signin'
+  }
+
   render() {
     return (
         <>
         <div className="page-nav">
             <div className="page-logo pointer left">
-              <Link onClick={() => window.location.assign('/')}>
+              <Link to="/" onClick={() => window.location.assign('/')}>
                 <Logo />
               </Link>
             </div>
@@ -32,13 +39,13 @@ class Header extends React.Component {
             </div>
             <div className="signout">
                 <Link to={'/signin'} onClick={() => this.props.signout()} className="format-link">
-                    <span className="pointer" >Signout</span>
+                    <span className="pointer" >{this.renderAuthButton()}</span>
                 </Link>
             </div>
         </div>
         <div className="menu-drop-down">
             <Link to="/signin" onClick={() => this.props.signout()} className="format-link">
-                <span>Signout</span>
+                <span>{this.renderAuthButton()}</span>
             </Link>
         </div>
         </>

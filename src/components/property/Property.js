@@ -15,11 +15,19 @@ class Property extends React.Component {
     this.props.listenForModalClose();
   }
 
+  showDeletePropertyForm = () => {
+    document.getElementById('myModal').style.display = 'block';
+    document.querySelector('.delete-property-form').style.display = 'block';
+
+    this.props.selectProperty(this.props.detail);
+    this.props.listenForModalClose();
+  }
+
   renderUpdateDelete() {
     if (this.props.detail.owner.toString() === sessionStorage.getItem('user_id')) {
       return (
         <>
-          <img alt="img" src={DeleteIcon} className="delete right" />
+          <img alt="img" src={DeleteIcon} onClick={this.showDeletePropertyForm} className="delete right" />
           <img alt="img" src={EditIcon} onClick={this.showUpdatePropertyForm} className="edit right" />
         </>
       );

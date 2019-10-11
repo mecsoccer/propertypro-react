@@ -80,3 +80,18 @@ export const updateProperty = (id, propertyDetails) => async (dispatch, getState
   }
 }
 
+export const deleteProperty = (id) => async (dispatch, getState) => {
+  try {
+    axiosInstance.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+
+    const response = await axiosInstance.delete(`/property/${id}`);
+    dispatch({ type: 'DELETE_PROPERTY', payload: response.data });
+    window.location.reload();
+  }
+  catch (error) {
+    if (error.message === 'Network Error') return alert('No or poor network connection.');
+    alert('problem deleting property');
+  }
+}
+

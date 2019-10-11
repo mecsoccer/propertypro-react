@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect } from 'react-redux';
-import Loader from '../Loader';
 import { updateProperty, getSingleProperty } from '../../actions';
 import PropertyForm from './PropertyForm';
 

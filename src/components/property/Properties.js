@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../Header';
 import Property from './Property';
 import PropertyCreate from './PropertyCreate';
+import PropertyDelete from './PropertyDelete';
 import '../styling/Properties.css';
 import '../styling/Main.css';
 import '../styling/Form.css';
@@ -83,17 +84,8 @@ class Properties extends React.Component {
 
     <div id="myModal" className="form-modal">
         <PropertyCreate />
-
         <PropertyEdit />
-        
-        <div className="property-form delete-property-form">
-            <span className="right modal-close-btn pointer">x</span>
-            <div>
-                <p>Continue with deleting this property?</p>
-                <button className="form-btn dom-color-bg">Cancel</button>
-                <button className="form-btn accent-bg-3">Delete</button>
-            </div>
-        </div>
+        <PropertyDelete />
     </div>
     </>
     );
