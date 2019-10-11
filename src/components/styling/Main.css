@@ -127,10 +127,10 @@ body{
     text-transform: capitalize;
 }
 
-/*images*/
-svg{
-    width: 20px;
-    height: 14px;
+/* images */
+.search-btn svg{
+    width: 20px !important;
+    height: 15px !important;
 }
 
 /*widths*/

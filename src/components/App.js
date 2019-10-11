@@ -1,16 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import history from '../history';
 import IndexPage from './IndexPage';
 import Signin from './Signin';
 import Signup from './Signup';
-import Properties from './Properties';
-import PropertyDetail from './PropertyDetail';
+import Properties from './property/Properties';
+import PropertyDetail from './property/PropertyDetail';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <Router history={history}>
           <div>
             <Route path="/" exact component={IndexPage} />
             <Route path="/signin" exact component={Signin} />
@@ -18,7 +19,7 @@ class App extends React.Component {
             <Route path="/properties" exact component={Properties} />
             <Route path="/properties/:id" exact component={PropertyDetail} />
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }

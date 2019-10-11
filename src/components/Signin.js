@@ -43,7 +43,6 @@ class Signin extends React.Component {
   authenticate = () => {
     const authenticated = this.props.auth.isSignedIn;
     if (!authenticated) return this.renderError([document.querySelector('#auth-error')]);
-    window.location.assign('/properties');
   }
 
   onSubmit = () => {
@@ -79,7 +78,7 @@ class Signin extends React.Component {
               <CtaButton value="SIGN IN" action={this.onSubmit}/>
               
               <div className="center-text margin-top40">
-                <a className="twelvecol accent-color1 format-link" href="#">Forgot password?</a>
+                <a className="twelvecol accent-color1 format-link" href="/signin">Forgot password?</a>
                   <span className="or dom-color">OR</span>
                 <a className="twelvecol accent-color1 format-link" href="/signup">Signup</a>
               </div>

@@ -19,6 +19,10 @@
     width: fit-content;
     margin-top: 8px;
 }
+.page-logo svg{
+    width: 150px;
+    height: 35px;
+}
 .menu{
     width: 20px;
     height: 16px;
@@ -107,6 +111,15 @@
 .properties{
     height: 1150px;
     overflow-y: auto;
+}
+.one-property{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #E8E9EA;
+    margin: auto;
+    margin-bottom: 30px;
 }
 .property{
     width: 300px;
@@ -231,6 +244,11 @@
         display: inline-block;
         height: 1370px;
     }
+    .one-property{
+        width: 270px;
+        display: inline-block;
+        margin: 0 10px 30px 10px;
+    }
     .property{
         width: 270px;
         display: inline-block;
@@ -259,6 +277,10 @@
     .properties{
         padding: 0;
     }
+    .one-property{
+        width: 300px;
+        margin: 0 20px 30px 20px;
+    }
     .property{
         width: 300px;
         margin: 0 20px 30px 20px;
@@ -279,6 +301,10 @@
     }
     .properties {
         padding: 0;
+    }
+    .one-property{
+        width: 300px;
+        margin: 0 30px 30px 30px;
     }
     .property{
         width: 300px;

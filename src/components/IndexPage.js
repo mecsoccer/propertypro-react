@@ -17,17 +17,17 @@ class IndexPage extends React.Component {
           <div className="site_name pointer"><img alt="pic" src={whiteLogo} /></div>
           <div className="nav">
             <button className="admin_button" title="login in as agent">
-              <a href="/signin?role=agent">Agent</a>
+              <a href="/signin">Agent</a>
             </button>
             <button className="attendant_button" title="login in as client">
-              <a href="/signin?role=client">Client</a>
+              <a href="/signin">Client</a>
             </button>
           </div>
         </div>
         <h2 className="intro">discover valuable properties</h2>
         <div className="centered">
             <button className="call_action eighteen bold">
-              <a href="/signup">GET STARTED</a>
+              <a href="/properties">GET STARTED</a>
             </button>
         </div>
       </div>
@@ -35,7 +35,7 @@ class IndexPage extends React.Component {
         <div className="show-case align-center">
           <div className="property">
             <div className="property-image">
-                <a href="/signin" className="format-link">
+                <a href="/properties" className="format-link">
                     <img alt="pic" src={prop2} />
                 </a>
             </div>
@@ -52,7 +52,7 @@ class IndexPage extends React.Component {
           </div>
           <div className="property">
             <div className="property-image">
-                <a href="/signin" className="format-link">
+                <a href="/properties" className="format-link">
                     <img alt="pic" src={prop1} />
                 </a>
             </div>
@@ -69,7 +69,7 @@ class IndexPage extends React.Component {
           </div>
           <div className="property">
             <div className="property-image">
-                <a href="/signin" className="format-link">
+                <a href="/properties" className="format-link">
                     <img alt="pic" src={prop3} />
                 </a>
             </div>
@@ -86,7 +86,7 @@ class IndexPage extends React.Component {
           </div>
           <div className="property">
             <div className="property-image">
-                <a href="/signin" className="format-link">
+                <a href="/properties" className="format-link">
                     <img alt="pic" src={prop1} />
                 </a>
             </div>
