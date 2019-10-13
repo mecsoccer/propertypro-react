@@ -65,7 +65,7 @@ class PropertyForm extends React.Component {
         <Field name="city" component={this.renderInput} label="Enter a city" />
         <Field name="address" component={this.renderInput} label="Enter address" />
         <Field name="type" component={this.renderSelectOptions} label="Choose type" />
-        <Field name="image_url" component={this.renderImageFile} label="Upload image" />
+        <Field name="image" component={this.renderImageFile} label="Upload image" />
         <button className="form-btn dom-color-bg">Submit</button>
       </form>
     );

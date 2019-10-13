@@ -1,26 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {selectProperty} from '../../actions';
 import { connect } from 'react-redux';
+import PropertyEdit from './PropertyEdit';
+import PropertyDelete from './PropertyDelete';
+import { selectProperty, showFormModal } from '../../actions';
 import LocationIcon from '../img/location.svg';
 import DeleteIcon from '../img/delete.svg';
 import EditIcon from '../img/edit.svg';
 
 class Property extends React.Component {
   showUpdatePropertyForm = () => {
-    document.getElementById('myModal').style.display = 'block';
-    document.querySelector('.update-property-form').style.display = 'block';
-
     this.props.selectProperty(this.props.detail);
-    this.props.listenForModalClose();
+    this.props.showFormModal(<PropertyEdit />);
   }
 
   showDeletePropertyForm = () => {
-    document.getElementById('myModal').style.display = 'block';
-    document.querySelector('.delete-property-form').style.display = 'block';
-
     this.props.selectProperty(this.props.detail);
-    this.props.listenForModalClose();
+    this.props.showFormModal(<PropertyDelete />);
   }
 
   renderUpdateDelete() {
@@ -58,4 +54,4 @@ class Property extends React.Component {
   }
 }
 
-export default connect(null, { selectProperty })(Property);
+export default connect(null, { selectProperty, showFormModal })(Property);

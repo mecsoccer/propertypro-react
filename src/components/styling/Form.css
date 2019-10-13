@@ -81,7 +81,6 @@ input[type=file]{
 	background-color: #f2f2f2;
 	padding: 50px 30px 30px;
 	margin: 50px 20px;
-	display: none;
 }
 .modal-close-btn{
 	position: relative;

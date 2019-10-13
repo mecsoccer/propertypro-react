@@ -43,6 +43,7 @@ export const getSingleProperty = (id) => async (dispatch, getState) => {
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
+    history.push('/properties');
   }
 }
 
@@ -80,6 +81,21 @@ export const updateProperty = (id, propertyDetails) => async (dispatch, getState
   }
 }
 
+export const markAsSoldProperty = (id) => async (dispatch, getState) => {
+  try {
+    axiosInstance.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+
+    const response = await axiosInstance.patch(`/property/${id}/sold`);
+    dispatch({ type: 'PROPERTY_SOLD', payload: response.data });
+    window.location.reload();
+  }
+  catch (error) {
+    if (error.message === 'Network Error') return alert('No or poor network connection.');
+    alert('problem updating property');
+  }
+}
+
 export const deleteProperty = (id) => async (dispatch, getState) => {
   try {
     axiosInstance.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
@@ -95,3 +111,10 @@ export const deleteProperty = (id) => async (dispatch, getState) => {
   }
 }
 
+export const showFormModal = (form) => (dispatch, getState) => {
+  dispatch({ type: 'SHOW_FORM_MODAL', payload: form });
+}
+
+export const closeFormModal = () => (dispatch, getState) => {
+  dispatch({ type: 'SHOW_FORM_MODAL', payload: false });
+}
