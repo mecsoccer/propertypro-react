@@ -1,10 +1,24 @@
 import axiosInstance from '../apis/propertyPro';
 import history from '../history';
 
+export const signup = userDetails => async dispatch => {
+  try {
+    const response = await axiosInstance.post('/auth/signup', userDetails);
+    dispatch({ type: 'SIGNUP', payload: response.data });
+    sessionStorage.setItem('token', response.data.data.token);
+    sessionStorage.setItem('user_id', response.data.data.id);
+    history.push('/properties');
+  }
+  catch (error) {
+    if (error.message === 'Network Error') return alert('No or poor network connection.');
+    dispatch({ type: 'SIGNUP', payload: {} });
+  }
+}
+
 export const signin = signinCredentials => async dispatch => {
   try {
     const response = await axiosInstance.post('/auth/signin', signinCredentials);
-    dispatch({ type: 'SIGNIN', payload: response.data || {} });
+    dispatch({ type: 'SIGNIN', payload: response.data });
     sessionStorage.setItem('token', response.data.data.token);
     sessionStorage.setItem('user_id', response.data.data.id);
     history.push('/properties');

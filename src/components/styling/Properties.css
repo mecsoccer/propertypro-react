@@ -1,6 +1,5 @@
 .page-container{
-    height: 1440px;
-    width: 100%;
+    height: auto;
 }
 .page-nav{
     height: 72px;
@@ -8,8 +7,8 @@
     padding: 8px 10px;
 }
 .page-main{
-    height: 1284px;
-    padding: 0 calc((100% - 370px)/2);
+    height: auto;
+    padding: 0 2%;
 }
 .footer{
     height: 100px;
@@ -109,8 +108,11 @@
 
 /* property section */
 .properties{
-    height: 1150px;
-    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+    display: grid;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 .one-property{
     width: 300px;
@@ -164,6 +166,7 @@
 }
 .pagination{
     margin: auto;
+    margin-bottom: 20px;
 }
 .pagination button{
     background: white;
@@ -175,10 +178,6 @@
 }
 
 @media screen and (min-width: 500px) {
-    .page-main{
-        height: 1515px;
-        padding: 0 calc((100% - 370px)/2);
-    }
     .search{
         border-style: hidden;
         height: 30px;
@@ -190,9 +189,6 @@
     .filter-section{
         padding: 0 30px;
     }
-    .properties{
-        height: 1340px;
-    }
 }
 
 @media screen and (min-width: 600px) {
@@ -202,10 +198,6 @@
     .page-nav{
         height: 85px;
         padding: 0 20px;
-    }
-    .page-main{
-        height: 1515px;
-        padding: 0 calc((100% - 590px)/2);
     }
     .page-logo{
         width: 20%;
@@ -240,10 +232,6 @@
     }
 
     /* properties section */
-    .properties{
-        display: inline-block;
-        height: 1370px;
-    }
     .one-property{
         width: 270px;
         display: inline-block;
@@ -253,6 +241,10 @@
         width: 270px;
         display: inline-block;
         margin: 0 10px 30px 10px;
+    }
+    .properties{
+        grid-template-columns: repeat(auto-fill,minmax(310px, 0fr));
+        grid-template-rows: repeat(auto-fill,minmax(310px, 0fr));
     }
 }
 
@@ -274,9 +266,6 @@
         display: initial;
         width: 10%;
     }
-    .properties{
-        padding: 0;
-    }
     .one-property{
         width: 300px;
         margin: 0 20px 30px 20px;
@@ -285,9 +274,10 @@
         width: 300px;
         margin: 0 20px 30px 20px;
     }
-    .page-main{
-        padding: 0 calc((100% - 690px)/2);
-    }   
+    .properties{
+        grid-template-columns: repeat(auto-fill,minmax(340px, 0fr));
+        grid-template-rows: repeat(auto-fill,minmax(340px, 0fr));
+    }
 }
 
 @media screen and (min-width: 1100px) {
@@ -299,9 +289,6 @@
     .signout{
         width: 20%;
     }
-    .properties {
-        padding: 0;
-    }
     .one-property{
         width: 300px;
         margin: 0 30px 30px 30px;
@@ -310,12 +297,13 @@
         width: 300px;
         margin: 0 30px 30px 30px;
     }
-    .page-main{
-        padding: 0 calc((100% - 1090px)/2);
-    }
     .property-image img:hover{
         transform: scale(1.5);
         transition: transform 1s ease;
+    }
+    .properties{
+        grid-template-columns: repeat(auto-fill,minmax(360px, 0fr));
+        grid-template-rows: repeat(auto-fill,minmax(360px, 0fr));
     }
 }
 

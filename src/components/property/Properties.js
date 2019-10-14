@@ -28,6 +28,19 @@ class Properties extends React.Component {
   }
 
   renderProperties() {
+    if (!this.props.properties.length) {
+      return <div className="loader"></div>;
+    }
+    return (
+      <section className="properties">
+        {this.props.properties.map(prop =>
+          <Property detail={prop} key={prop.id} />
+        )}
+      </section>
+    );
+  }
+
+  render() {
     return (
       <>
       <div className="page-container">
@@ -46,30 +59,20 @@ class Properties extends React.Component {
                   {this.renderAddButton()}
                 </span>
             </div>
-            <section className="properties">
-              {this.props.properties.map(prop =>
-                <Property detail={prop} key={prop.id} />
-              )}
-            </section>
+              {this.renderProperties()}
             <div className="pagination align-center">
                 <button>Previous</button>
-                <span>{this.props.properties.length} of {this.props.properties.length} showing</span>
+                <span>{this.props.properties.length} of 1000 showing</span>
                 <button>Next</button>
             </div>
         </div>
-        <div className="footer accent-bg-1">
-            <p className="white-text align-center">© PropertyPro-lite, 2019</p>
-        </div>
+    </div>
+    <div className="footer accent-bg-1">
+        <p className="white-text align-center">© PropertyPro-lite, 2019</p>
     </div>
 
     <FormModal />
     </>
-    );
-  }
-
-  render() {
-    return (
-      <div>{this.renderProperties()}</div>
     );
   }
 }

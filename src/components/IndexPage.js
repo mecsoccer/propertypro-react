@@ -116,9 +116,9 @@ class IndexPage extends React.Component {
         </div>
         <div className="agent-div">
           <div className="agent-intro align-center accent-fg-1">
-            <p>Be the first to hear about new properties in town</p>
-            <p>Connect with best agents available</p>
-            <p>Choose a perfect home for your family</p>
+            <p>Advertise properties seamlessly fast</p>
+            <p>Advertise to millions of clients around the world</p>
+            <p>Get paid through our platform</p>
           </div>
           <div className="agent-btn-div align-center">
             <a href="/signup">

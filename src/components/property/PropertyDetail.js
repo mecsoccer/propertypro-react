@@ -17,7 +17,7 @@ class PropertyDetail extends React.Component {
 
   renderImage(image) {
     const { image_url } = { ...this.props.property };
-    return (image_url === '') ? image : image_url;
+    return (image_url === '' || String(image_url).startsWith('https://img.com')) ? image : image_url;
   }
 
   renderMarkAsSold() {

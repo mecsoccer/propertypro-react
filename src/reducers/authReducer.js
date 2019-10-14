@@ -5,6 +5,11 @@ function authReducer(state = {}, action) {
         return { ...state, isSignedIn: false };
       }
       return { ...state, user: action.payload.data, isSignedIn: true };
+    case 'SIGNUP':
+      if (!action.payload.data) {
+        return { ...state, isSignedIn: false };
+      }
+      return { ...state, user: action.payload.data, isSignedIn: true };
     case 'SIGNOUT':
       return { ...state, user: {}, isSignedIn: false };
     default:
