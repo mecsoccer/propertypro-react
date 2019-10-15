@@ -8,6 +8,7 @@
 }
 .page-main{
     height: auto;
+    min-height: 100vh;
     padding: 0 2%;
 }
 .footer{

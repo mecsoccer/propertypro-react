@@ -3,6 +3,7 @@ import whiteLogo from './img/logo-white.svg';
 import prop2 from './img/prop2.jpg';
 import prop1 from './img/prop1.jpg';
 import prop3 from './img/prop3.jpeg';
+import LocationIcon from './img/location.svg';
 import './styling/Main.css';
 import './styling/Properties.css';
 import './styling/Index.css';
@@ -42,7 +43,7 @@ class IndexPage extends React.Component {
             <div className="property-desc">
                 <div>
                     <span className="cost twenty accent-fg-3">$100,000</span>
-                    <img className="location" alt="pic" src="./img/location.svg" />
+                    <img className="location" alt="pic" src={LocationIcon} />
                 </div>
                 <p className="street bold">no. 36 araromi street, onike</p>
                 <div>
@@ -59,7 +60,7 @@ class IndexPage extends React.Component {
             <div className="property-desc">
                 <div>
                     <span className="cost twenty accent-fg-3">$100,000</span>
-                    <img className="location" alt="pic" src="./img/location.svg" />
+                    <img className="location" alt="pic" src={LocationIcon} />
                 </div>
                 <p className="street bold">no. 36 araromi street, onike</p>
                 <div>
@@ -76,7 +77,7 @@ class IndexPage extends React.Component {
             <div className="property-desc">
                 <div>
                     <span className="cost twenty accent-fg-3">$100,000</span>
-                    <img className="location" alt="pic" src="./img/location.svg" />
+                    <img className="location" alt="pic" src={LocationIcon} />
                 </div>
                 <p className="street bold">no. 36 araromi street, onike</p>
                 <div>
@@ -93,7 +94,7 @@ class IndexPage extends React.Component {
             <div className="property-desc">
                 <div>
                     <span className="cost twenty accent-fg-3">$100,000</span>
-                    <img className="location" alt="pic" src="./img/location.svg" />
+                    <img className="location" alt="pic" src={LocationIcon} />
                 </div>
                 <p className="street bold">no. 36 araromi street, onike</p>
                 <div>

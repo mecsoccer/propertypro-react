@@ -63,7 +63,7 @@ class Signin extends React.Component {
               </a>
           </div>
           <div className="sign-in">
-              <div className="page-title accent-color1 sign-in-title">Sign in as an Agent</div>
+              <div className="page-title accent-color1 sign-in-title">User Signin</div>
               <p id="auth-error" className="error off">Incorrect email or password *</p>
 
               <div className="">
