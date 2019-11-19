@@ -43,7 +43,7 @@ class PropertyDetail extends React.Component {
   }
 
   renderMarkAsSold() {
-    const { owner, id } = { ...this.props.property };
+    const { owner } = { ...this.props.property };
     const userId = sessionStorage.getItem('user_id');
     if (userId && Number(userId) === owner) {
       return (
