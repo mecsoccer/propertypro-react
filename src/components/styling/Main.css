@@ -432,6 +432,12 @@ tr:nth-child(even){
 .flex{
     display: flex;
 }
+.flex-ai-ct{
+    align-items: center;
+}
+.flex-jc-ct{
+    justify-content: center;
+}
 .wrap{
     flex-wrap: wrap;
 }

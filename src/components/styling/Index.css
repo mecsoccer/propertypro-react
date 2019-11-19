@@ -1,6 +1,10 @@
 html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     box-sizing: border-box;
   }
+  html{
+    max-width: 1500px;
+    margin: auto;
+  }
   html, body, .main{
     height: 100%;
   }

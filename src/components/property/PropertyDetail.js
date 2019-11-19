@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Header from '../Header';
+import FormModal from '../FormModal';
 import Prop2 from '../img/prop2.jpg';
 import NightView from '../img/night-view.jpg';
 import InsideView from '../img/inside-view.jpg';
 import BackView from '../img/back-view.jpg';
 import LocationIcon from '../img/location.svg';
-import { getSingleProperty, markAsSoldProperty } from '../../actions'
+import { getSingleProperty, showFormModal, closeFormModal, markAsSoldProperty } from '../../actions'
 import '../styling/Property-detail.css';
+import Navigation from '../Navigation';
 
 class PropertyDetail extends React.Component {
   componentDidMount() {
@@ -20,12 +21,33 @@ class PropertyDetail extends React.Component {
     return (image_url === '' || String(image_url).startsWith('https://img.com')) ? image : image_url;
   }
 
+  renderForm = () => {
+      return (
+        <div id="myModal" className="modal">
+            <div className="property-form delete-property-form">
+                <span
+                    className="right modal-close-btn pointer"
+                    onClick={() => this.props.closeFormModal()}
+                >x</span>
+                <div>
+                    <p>Are you sure to mark this property as sold?</p>
+                    <button className="form-btn dom-color-bg" onClick={() => this.props.closeFormModal()}>Cancel</button>
+                    <button
+                        className="form-btn accent-bg-3"
+                        onClick={() => this.props.markAsSoldProperty(this.props.property.id)}
+                    >Sold</button>
+                </div>
+            </div>
+        </div>
+      );
+  }
+
   renderMarkAsSold() {
     const { owner, id } = { ...this.props.property };
     const userId = sessionStorage.getItem('user_id');
     if (userId && Number(userId) === owner) {
       return (
-        <button onClick={() => this.props.markAsSoldProperty(id)} className="sold-btn accent-bg-3">
+        <button onClick={() => this.props.showFormModal(this.renderForm())} className="sold-btn accent-bg-3">
           Mark as Sold
         </button>
       );
@@ -36,7 +58,7 @@ class PropertyDetail extends React.Component {
     return (
       <>
       <div className="detail-container">
-        <Header />
+        <Navigation />
 
         <div className="back-btn-div">
             <Link className="back-btn capitalize" to="/properties">View More</Link>
@@ -101,23 +123,22 @@ class PropertyDetail extends React.Component {
         </div>
     </div>
 
-    <div id="myModal" className="form-modal">
-        <div className="property-form delete-property-form">
-            <span className="right modal-close-btn pointer">x</span>
-            <div>
-                <p>Are you sure to mark this property as sold?</p>
-                <button className="form-btn dom-color-bg">Cancel</button>
-                <button className="form-btn accent-bg-3">Sold</button>
-            </div>
-        </div>
-    </div>
+    <FormModal />
     </>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { property: state.properties.property };
+  return { property: state.properties.property, form: state.properties.form_modal };
 }
 
-export default connect(mapStateToProps, { getSingleProperty, markAsSoldProperty })(PropertyDetail);
+export default connect(
+    mapStateToProps,
+    {
+        getSingleProperty,
+        showFormModal,
+        closeFormModal,
+        markAsSoldProperty,
+    }
+)(PropertyDetail);

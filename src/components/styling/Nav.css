@@ -1,0 +1,122 @@
+.nav-container{
+    background: white;
+    width: 100%;
+    height: auto;
+    padding: 4% 10%;
+}
+.nav-container.closed{
+    height: 70px;
+    background: inherit;
+}
+.nav-control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu{
+    width: 20px;
+    height: 16px;
+}
+.flex-cont.closed{
+    display: none;
+}
+.nav-items{
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding: 0;
+    list-style: none;
+}
+.nav-item{
+    color: #51585b;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 195.69%;
+}
+.nav-buttons{
+    display: flex;
+    flex-direction: column;
+}
+.curvy-btn{
+    height: 38px;
+    border-radius: 50px;
+    padding: 6px 7px;
+    font-family: Roboto;
+    font-style: normal;
+    color: #047496;
+}
+.auth-btn{
+    width: 116px;
+    border: 2px solid #047496;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 19px;
+    color: #047496;
+    background: white;
+    margin-bottom: 21px;
+}
+.download-btn{
+    width: 154px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    background: #FFD809;
+    border: none;
+}
+.white-bg{
+    background: white !important;
+}
+
+@media screen and (min-width: 600px) {
+
+}
+
+@media screen and (min-width: 850px) {
+    .nav-container{
+        height: 100px;
+        padding: 0 83px;
+        display: flex;
+        align-items: center;
+    }
+    .nav-content{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 50px;
+    }
+    .nav-cancel{
+        display: none;
+    }
+    .nav-items{
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-evenly;
+        padding: 0 100px 0 20px;
+        margin: 0;
+        height: fit-content;
+    }
+    .nav-item{
+        font-size: 14px;
+    }
+    .nav-buttons{
+        flex-direction: row;
+        height: fit-content;
+    }
+    .auth-btn{
+        margin: 0;
+        margin-right: 18px;
+    }
+    .nav-control {
+        height: fit-content;
+    }
+    .flex-cont{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .flex-cont.closed{
+        display: flex;
+    }
+}

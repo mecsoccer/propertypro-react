@@ -1,11 +1,6 @@
 .page-container{
     height: auto;
 }
-.page-nav{
-    height: 72px;
-    border-bottom: 1px solid gainsboro;
-    padding: 8px 10px;
-}
 .page-main{
     height: auto;
     min-height: 100vh;
@@ -22,11 +17,6 @@
 .page-logo svg{
     width: 150px;
     height: 35px;
-}
-.menu{
-    width: 20px;
-    height: 16px;
-    margin-top: 18px;
 }
 .page-logo img{
     width: 120px;
@@ -85,6 +75,9 @@
     height: 50px;
     margin: 35px 0;
     padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .filter{
     padding-top: 10px;
@@ -93,10 +86,17 @@
 .filter-section select{
     margin: 2.5px 0 0;
     height: 35px;
-    border-radius: 5px;
     background: white;
-    border: 1px solid #464E51;
-    float: left;
+    border: 1px solid white;
+    border-bottom: 1px solid gainsboro;
+    margin-left: 30px;
+    color: #868686;
+}
+.filter-section select:first-child{
+    margin-left: 0;
+}
+.filter-section select:target{
+    color: gainsboro;
 }
 .filter-section svg{
     float: right;
@@ -115,12 +115,16 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+.mh{
+    min-height: 100vh;
+}
 .one-property{
     width: 300px;
     height: 300px;
     overflow: hidden;
     border-radius: 5px;
-    border: 1px solid #E8E9EA;
+    border: none;
+    box-shadow: 2px 2px 19px 5px #ececec;
     margin: auto;
     margin-bottom: 30px;
 }
@@ -177,6 +181,10 @@
 .pagination span{
     margin: 0 5px;
 }
+.disabled{
+    opacity: 0.5;
+    color: gainsboro !important;
+}
 
 @media screen and (min-width: 500px) {
     .search{
@@ -188,14 +196,11 @@
         margin: auto;
     }
     .filter-section{
-        padding: 0 30px;
+        padding: 0 10%;
     }
 }
 
 @media screen and (min-width: 600px) {
-    .menu{
-        display: none;
-    }
     .page-nav{
         height: 85px;
         padding: 0 20px;
@@ -230,6 +235,9 @@
         float: left;
         display: initial;
         width: 8%;
+    }
+    .filter-section select{
+        min-width: 200px;
     }
 
     /* properties section */
@@ -279,6 +287,12 @@
         grid-template-columns: repeat(auto-fill,minmax(340px, 0fr));
         grid-template-rows: repeat(auto-fill,minmax(340px, 0fr));
     }
+    .mh{
+        min-height: calc(100vh - 200px);
+    }
+    .filter-section{
+        margin: 35px 0 70px;
+    }
 }
 
 @media screen and (min-width: 1100px) {
@@ -305,6 +319,8 @@
     .properties{
         grid-template-columns: repeat(auto-fill,minmax(360px, 0fr));
         grid-template-rows: repeat(auto-fill,minmax(360px, 0fr));
+        max-width: 1200px;
+        margin: auto;
     }
 }
 

@@ -36,12 +36,46 @@ export const signout = () => dispatch => {
   history.push('/signin');
 }
 
-export const fetchProperties = () => async (dispatch, getState) => {
+export const fetchProperties = (limit, offset, state='', type='') => async (dispatch, getState) => {
   try {
     axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset}&type=${type}&state=${state}`);
 
-    const response = await axiosInstance.get('/property');
-    dispatch({ type: 'FETCH_PROPERTIES', payload: response.data });
+    dispatch({ type: 'FETCH_PROPERTIES', payload: { ...response.data } });
+  }
+  catch (error) {
+    if (error.message === 'Network Error') return alert('No or poor network connection.');
+  }
+}
+
+export const updatePropertyQuery = (payload) => (dispatch) => {
+  dispatch({ type: 'UPDATE_PROPERTY_QUERY', payload });
+}
+
+export const updatePagePosition = (payload) => (dispatch, getState) => {
+  dispatch({ type: 'UPDATE_PAGINATION', payload });
+}
+
+export const fetchMoreProperties = (limit, offset) => async (dispatch, getState) => {
+  try {
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset + limit}`);
+
+    if (response.data.data.length) dispatch({
+      type: 'MORE_PROPERTIES', payload: { ...response.data, counter: offset + limit } });
+  }
+  catch (error) {
+    if (error.message === 'Network Error') return alert('No or poor network connection.');
+  }
+}
+
+export const fetchLessProperties = (limit, offset) => async (dispatch, getState) => {
+  try {
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+    if (offset - limit < 0) return null;
+
+    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset - limit}`);
+    dispatch({ type: 'LESS_PROPERTIES', payload: { ...response.data, counter: offset - limit  } });
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
@@ -106,6 +140,7 @@ export const markAsSoldProperty = (id) => async (dispatch, getState) => {
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
+    if (error.message.includes(401)) return alert('your session timed out. signin again');
     alert('problem updating property');
   }
 }
