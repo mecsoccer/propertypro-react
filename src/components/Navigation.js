@@ -44,14 +44,14 @@ const Navigation = (props) => {
         </div>
         <div className={`flex-cont ${navState}`}>
           <ul className="nav-items">
-            <a href="/"><li className="nav-item">About Us</li></a>
-            <a href="/"><li className="nav-item">How it Works</li></a>
-            <a href="/"><li className="nav-item">Contact Us</li></a>
-            <a href="/"><li className="nav-item">FAQs</li></a>
+            <li className="nav-item pointer" title="available shortly">About Us</li>
+            <li className="nav-item pointer" title="available shortly">How it Works</li>
+            <li className="nav-item pointer" title="available shortly">Contact Us</li>
+            <li className="nav-item pointer" title="available shortly">FAQs</li>
           </ul>
           <div className="nav-buttons">
             {renderAuthButton(props)}
-            <button className="curvy-btn download-btn">DOWNLOAD APP</button>
+            <button className="curvy-btn download-btn" title="available shortly">DOWNLOAD APP</button>
           </div>
         </div>
       </div>

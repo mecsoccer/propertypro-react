@@ -111,7 +111,6 @@
 .properties{
     height: auto;
     min-height: 100vh;
-    display: grid;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -162,6 +161,7 @@
 }
 .city{
     color: #979393;
+    font-size: 14px;
 }
 .property-desc .delete, .property-desc .edit{
     width: 16px;
@@ -171,7 +171,7 @@
 }
 .pagination{
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 .pagination button{
     background: white;
@@ -252,8 +252,13 @@
         margin: 0 10px 30px 10px;
     }
     .properties{
+        display: grid;
         grid-template-columns: repeat(auto-fill,minmax(310px, 0fr));
         grid-template-rows: repeat(auto-fill,minmax(310px, 0fr));
+    }
+    .pagination{
+        margin: auto;
+        margin-bottom: 70px;
     }
 }
 
@@ -291,7 +296,7 @@
         min-height: calc(100vh - 200px);
     }
     .filter-section{
-        margin: 35px 0 70px;
+        margin: 50px 0 15px;
     }
 }
 
@@ -306,7 +311,7 @@
     }
     .one-property{
         width: 300px;
-        margin: 0 30px 30px 30px;
+        margin: 30px;
     }
     .property{
         width: 300px;

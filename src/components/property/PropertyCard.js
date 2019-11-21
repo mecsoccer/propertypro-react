@@ -19,6 +19,13 @@ class Property extends React.Component {
     this.props.showFormModal(<PropertyDelete />);
   }
 
+  renderMockImage = (imageUrl) => {
+    if (imageUrl === '' || imageUrl === 'https://img.com/img/house.png') {
+      return 'http://res.cloudinary.com/jaachi/image/upload/v1571073395/pmtekyucnv3ofjj9debe.jpg';
+    }
+    return imageUrl;
+  }
+
   renderUpdateDelete() {
     if (this.props.detail.owner.toString() === sessionStorage.getItem('user_id')) {
       return (
@@ -35,17 +42,17 @@ class Property extends React.Component {
         <div className="one-property">
             <Link to={`/properties/${this.props.detail.id}`}>
                 <div className="property-image">
-                    <img alt="img" src={this.props.detail.image_url} />
+                    <img alt="img" src={this.renderMockImage(this.props.detail.image_url)} />
                 </div>
             </Link>
             <div className="property-desc">
                 <div>
-                    <span className="cost twenty accent-fg-3">${this.props.detail.price}</span>
+                    <span className="cost twenty accent-fg-3">&#x20A6;{this.props.detail.price}</span>
                     <img className="location" alt="img" src={LocationIcon} />
                 </div>
                 <p className="street bold">{this.props.detail.address}</p>
                 <div>
-                    <span className="city bold">{this.props.detail.city}</span>
+                    <span className="city">{this.props.detail.city}, {this.props.detail.state} state</span>
                     {this.renderUpdateDelete()}
                 </div>
             </div>

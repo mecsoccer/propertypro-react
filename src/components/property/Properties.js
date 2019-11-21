@@ -4,10 +4,11 @@ import {
   showFormModal,
   closeFormModal,
   updatePropertyQuery,
-  updatePagePosition,
+  fetchMoreProperties,
+  fetchLessProperties,
 } from '../../actions';
 import { connect } from 'react-redux';
-import Property from './Property';
+import PropertyCard from './PropertyCard';
 import FormModal from '../FormModal';
 import PropertyCreate from './PropertyCreate';
 import '../styling/Properties.css';
@@ -43,20 +44,31 @@ class Properties extends React.Component {
       };
   }
 
-  updatePagination = (operation) => {
-    return (e) => {
-      const next = operation === 'next' ? this.pageSize : -this.pageSize;
-      this.props.updatePagePosition(this.props.counter + next);
-      const {state, type } = this.props.propertyQuery;
-
-      this.props.fetchProperties(this.pageSize, this.props.counter, state, type);
-    };
-  }
-
   renderAddButton() {
     if (sessionStorage.getItem('token')) {
       return <AddButton onClick={this.showCreatePropertyForm} />;
     }
+  }
+
+  addCommaToDigit = (amount) => {
+    if (amount.length < 4) return amount;
+    let money = '', i = amount.length % 3 - 1;
+    amount.split('').forEach((digit, idx) => {
+      money = money + digit;
+      if (idx === i && idx !== amount.length - 1) {
+        money += ',';
+        i += 3;
+      };
+    });
+    return money;
+  }
+
+  fetchNextProperties = (e) => {
+    this.props.fetchMoreProperties(this.pageSize);
+  }
+
+  fetchPrevProperties = (e) => {
+    this.props.fetchLessProperties(this.pageSize);
   }
 
   renderProperties() {
@@ -69,9 +81,9 @@ class Properties extends React.Component {
     }
     return (
       <section className="properties">
-        {this.props.properties.map(prop =>
-          <Property detail={prop} key={prop.id} />
-        )}
+          {this.props.properties.map(prop =>
+            <PropertyCard detail={prop} key={prop.id} />
+          )}
       </section>
     );
   }
@@ -106,13 +118,16 @@ class Properties extends React.Component {
               {this.renderProperties()}
             <div className="pagination align-center">
                 <button
-                  className={this.props.counter ? 'pointer' : 'disabled'}
-                  onClick={this.updatePagination('previous')}
+                  className={this.props.start ? "disabled" : "pointer"}
+                  onClick={this.fetchPrevProperties}
                 >
                   {'<< Previous'}
                 </button>
-                <span>{this.props.properties.length} showing</span>
-                <button className="pointer" onClick={this.updatePagination('next')}>
+                <span>Page {this.props.counter / this.pageSize + 1}</span>
+                <button
+                  className={this.props.end ? "disabled" : "pointer"}
+                  onClick={this.fetchNextProperties}
+                >
                   Next >>
                 </button>
             </div>
@@ -132,8 +147,10 @@ const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth,
     properties: state.properties.properties,
+    propertyQuery: state.properties.query,
     counter: state.properties.counter,
-    propertyQuery: state.properties.query
+    start: state.properties.start,
+    end: state.properties.end,
   };
 }
 
@@ -144,6 +161,7 @@ export default connect(
     showFormModal,
     closeFormModal,
     updatePropertyQuery,
-    updatePagePosition,
+    fetchMoreProperties,
+    fetchLessProperties,
   }
 )(Properties);

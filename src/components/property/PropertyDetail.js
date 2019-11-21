@@ -96,21 +96,21 @@ class PropertyDetail extends React.Component {
             </div>
             <div className="detail-panel">
                 <div className="centered">
+                    <h3 className="panel-header">Status</h3>
+                    <span className="status-el dom-color lt-pd-30 bold">{{...this.props.property}.status}</span>
+                </div>
+                <div className="centered">
                     <h3 className="panel-header">Price</h3>
                     <span className="twenty bold accent-fg-3 lt-pd-30">&#x20A6;{{...this.props.property}.price}</span>
+                </div>
+                <div className="centered">
+                    <h3 className="panel-header">Property Type</h3>
+                    <span className="lt-pd-30">{{...this.props.property}.type}</span>
                 </div>
                 <div className="centered">
                     <h3 className="panel-header">Contact Owner</h3>
                     <p className="lt-pd-30">{{...this.props.property}.owner_phone_number}</p>
                     <span className="lt-pd-30">{{...this.props.property}.owner_email}</span>
-                </div>
-                <div className="centered">
-                    <h3 className="panel-header">Status</h3>
-                    <span className="status-el dom-color lt-pd-30">{{...this.props.property}.status}</span>
-                </div>
-                <div className="centered">
-                    <h3 className="panel-header">Property Type</h3>
-                    <span className="lt-pd-30">{{...this.props.property}.type}</span>
                 </div>
                 <div className="centered">
                     {this.renderMarkAsSold()}

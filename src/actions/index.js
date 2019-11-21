@@ -41,7 +41,7 @@ export const fetchProperties = (limit, offset, state='', type='') => async (disp
     axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
     const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset}&type=${type}&state=${state}`);
 
-    dispatch({ type: 'FETCH_PROPERTIES', payload: { ...response.data } });
+    dispatch({ type: 'FETCH_PROPERTIES', payload: { ...response.data, counter: 0, start: true, end: false } });
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
@@ -52,30 +52,37 @@ export const updatePropertyQuery = (payload) => (dispatch) => {
   dispatch({ type: 'UPDATE_PROPERTY_QUERY', payload });
 }
 
-export const updatePagePosition = (payload) => (dispatch, getState) => {
-  dispatch({ type: 'UPDATE_PAGINATION', payload });
-}
-
-export const fetchMoreProperties = (limit, offset) => async (dispatch, getState) => {
+export const fetchMoreProperties = (limit) => async (dispatch, getState) => {
   try {
-    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
-    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset + limit}`);
+    const {counter, query } = getState().properties;
+    const state = query.state ? query.state : '';
+    const type = query.type ? query.type : '';
 
-    if (response.data.data.length) dispatch({
-      type: 'MORE_PROPERTIES', payload: { ...response.data, counter: offset + limit } });
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${counter + limit}&state=${state}&type=${type}`);
+
+    if (response.data.data.length) return dispatch({
+      type: 'MORE_PROPERTIES', payload: { ...response.data, counter: counter + limit, start: false } });
+
+    return dispatch({ type: 'END_OF_PROPERTIES', payload: { end: true } });
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
   }
 }
 
-export const fetchLessProperties = (limit, offset) => async (dispatch, getState) => {
+export const fetchLessProperties = (limit) => async (dispatch, getState) => {
   try {
-    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
-    if (offset - limit < 0) return null;
+    const {counter, query } = getState().properties;
+    const state = query.state ? query.state : '';
+    const type = query.type ? query.type : '';
 
-    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${offset - limit}`);
-    dispatch({ type: 'LESS_PROPERTIES', payload: { ...response.data, counter: offset - limit  } });
+    if (counter === 0) return dispatch({ type: 'START_OF_PROPERTIES', payload: { start: true } });
+
+    axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+    const response = await axiosInstance.get(`/property?limit=${limit}&offset=${counter - limit}&state=${state}&type=${type}`);
+    
+    return dispatch({type: 'LESS_PROPERTIES', payload: { ...response.data, counter: counter - limit, end: false } });
   }
   catch (error) {
     if (error.message === 'Network Error') return alert('No or poor network connection.');
